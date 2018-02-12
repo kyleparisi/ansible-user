@@ -1,0 +1,18 @@
+
+---
+
+- hosts: all,localhost
+  become: true
+  tasks:
+    - user:
+        name: ansible
+        shell: /bin/bash
+
+    - authorized_key:
+        user: ansible
+        key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCkWVdFHXuehnAyox4RGLwGmnu/ZqPiIs4H/ajdEHMTBzqoAelrMCMmQs+9PnCGpoH/BbiNbbhqhpYaANMbLUl0o3moO76SGJpoNJMRGGFG8fyWv4xj0HIpRBCrmmKKaF3xvx6Wz/JqpeNXb5AfOZSLfyOBoouZArDxJwuDqqAfRKLKBKSKpibJmRTooQ5bKRSaq21aqZTjwHjTiT/2hPRGiuVDoq1PzyXP9LLdIrvSNft7NJs71qMJNbvTBbL/nXQvyS2HXXOyCElw+wk3TKNQnhRIesoJq69kVfvFerodMINwUCBhOATL+TWkF0scU9gFbRNWiKSy1VcfzCFGtGvj ansible-generated on rundeck
+
+    - lineinfile:
+        dest: /etc/sudoers.d/ansible
+        create: yes
+        line: 'ansible ALL=(ALL) NOPASSWD:ALL'
